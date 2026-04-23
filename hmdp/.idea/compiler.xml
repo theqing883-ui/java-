@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hm-dianping05Redisson" />
+        <module name="hm-dianping04Dlock" />
+        <module name="hm-dianping08" />
+        <module name="hm-dianping02cache" />
+        <module name="hm-dianping03FlashSale" />
+        <module name="hm-dianping" />
+        <module name="hm-dianping06FlashSale2" />
+        <module name="hm-dianping07" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hm-dianping04DLock" target="17" />
+      <module name="hm-dianping04DLock.main" target="17" />
+      <module name="hm-dianping04DLock.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="hm-dianping" options="-parameters" />
+      <module name="hm-dianping02cache" options="-parameters" />
+      <module name="hm-dianping03FlashSale" options="-parameters" />
+      <module name="hm-dianping04DLock" options="-parameters" />
+      <module name="hm-dianping04DLock.main" options="-parameters" />
+      <module name="hm-dianping04DLock.test" options="-parameters" />
+      <module name="hm-dianping04Dlock" options="-parameters" />
+      <module name="hm-dianping05Redisson" options="-parameters" />
+      <module name="hm-dianping06FlashSale2" options="-parameters" />
+      <module name="hm-dianping07" options="-parameters" />
+      <module name="hm-dianping08" options="-parameters" />
+    </option>
+  </component>
+</project>
