@@ -1,0 +1,134 @@
+package com.hsp.draw.tankGAME03;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Vector;
+
+public class MyPanel extends JPanel implements KeyListener, Runnable {
+    Hero hero = null;
+    Vector<Enemy> enemyVector = new Vector<>();
+    int enemies = 3;
+
+
+    public MyPanel() {
+        this.hero = new Hero(100, 100);
+        for (int i = 0; i < enemies; i++) {
+            Enemy enemy = new Enemy(100 + i * 100, 0);
+            enemy.setDirect(2);
+            enemyVector.add(enemy);
+        }
+    }
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.fillRect(0, 0, 1000, 750);//坦克运动区域
+        drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), 1);//绘制我方坦克
+        if (hero.getShot() != null && hero.getShot().getIsLive()) {//先判断getShot()是否为null
+            g.fill3DRect(hero.getShot().getX(), hero.getShot().getY(), 2, 2, false);//绘制我方炮弹
+        }
+        for (Enemy enemy : enemyVector) {
+            drawTank(enemy.getX(), enemy.getY(), g, enemy.getDirect(), 0);
+        }
+    }
+
+    public void drawTank(int x, int y, Graphics g, int direct, int type) {
+        switch (type) {
+            case 0: {//自己
+                g.setColor(Color.cyan);
+                break;
+            }
+            case 1: {//敌人
+                g.setColor(Color.red);
+                break;
+            }
+        }
+        //direct 0,1,2,3 ,上右下右
+        switch (direct) {
+            case 0: {//炮筒向上
+                g.fill3DRect(x, y, 10, 60, false);//左轮
+                g.fill3DRect(x + 30, y, 10, 60, false);//右轮
+                g.fill3DRect(x + 10, y + 10, 20, 40, false);//炮身
+                g.fillOval(x + 10, y + 20, 20, 20);
+                g.drawLine(x + 20, y + 30, x + 20, y);
+                break;
+            }
+            case 1: {//右边
+                g.fill3DRect(x, y, 60, 10, false);
+                g.fill3DRect(x, y + 30, 60, 10, false);
+                g.fill3DRect(x + 10, y + 10, 40, 20, false);
+                g.fillOval(x + 20, y + 10, 20, 20);
+                g.drawLine(x + 30, y + 20, x + 60, y + 20);
+                break;
+            }
+            case 2: {
+                g.fill3DRect(x, y, 10, 60, false);//左轮
+                g.fill3DRect(x + 30, y, 10, 60, false);//右轮
+                g.fill3DRect(x + 10, y + 10, 20, 40, false);//炮身
+                g.fillOval(x + 10, y + 20, 20, 20);
+                g.drawLine(x + 20, y + 30, x + 20, y + 60);
+                break;
+            }
+            case 3: {
+                g.fill3DRect(x, y, 60, 10, false);
+                g.fill3DRect(x, y + 30, 60, 10, false);
+                g.fill3DRect(x + 10, y + 10, 40, 20, false);
+                g.fillOval(x + 20, y + 10, 20, 20);
+                g.drawLine(x + 30, y + 20, x, y + 20);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override//0,1,2,3 ,上右下左
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
+            hero.moveUp();
+            hero.setDirect(0);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
+            hero.moveDown();
+            hero.setDirect(2);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
+            hero.moveLeft();
+            hero.setDirect(3);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            hero.moveRight();
+            hero.setDirect(1);
+        }
+        if (e.getKeyCode() == KeyEvent.VK_J) {
+            hero.shotFired();
+            new Thread(this).start();
+        }
+        this.repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            repaint();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            if (!(hero.getShot() != null && hero.getShot().getIsLive())) {
+                System.out.println("重绘结束");
+                break;
+            }
+        }
+    }
+}

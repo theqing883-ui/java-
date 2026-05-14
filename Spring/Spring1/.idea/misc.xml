@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Spring01/pom.xml" />
+        <option value="$PROJECT_DIR$/spring02/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring03_anotation/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring04_Mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring_Junit/pom.xml" />
+        <option value="$PROJECT_DIR$/spring06_aop/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring05_Junit/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring07_transfer/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://mybatis.org/dtd/mybatis-3-config.dtd" location="" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_24" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

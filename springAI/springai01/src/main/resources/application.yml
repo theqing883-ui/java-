@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: spring-ai-rag-demo
+
+  # Ollama & Spring AI 核心配置
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      # 聊天模型配置
+      chat:
+        options:
+          model: qwen3.5:4b      # 务必与 ollama list 保持一致
+          temperature: 0.7
+      # 嵌入模型配置 (RAG 核心)
+      embedding:
+        options:
+          model: qwen3-embedding:latest
+
+    # 向量数据库逻辑配置
+    vectorstore:
+      redis:
+        index: vector-index      # M5 版本建议使用 index
+        prefix: "vs:"
+        initialize-schema: true  # 启动时自动创建索引结构
+
+  # Redis 基础连接
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      timeout: 5000ms
+
+  # 数据库 & Servlet 配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/itheima?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 40MB
+
+# 日志配置：开启 DEBUG 模式以便观察 AI 交互过程
+logging:
+  level:
+    root: INFO
+    org.springframework.ai: DEBUG
+    com.heima: DEBUG

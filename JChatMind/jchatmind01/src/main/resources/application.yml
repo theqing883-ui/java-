@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jchatmind
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+  ai:
+    deepseek:
+      api-key: ${API-KEY-deepseek}
+      base-url: https://api.deepseek.com
+      chat:
+        options:
+          model: deepseek-chat
+    zhipuai:
+      api-key: ${API-KEY-zhipuai}
+      base-url: https://open.bigmodel.cn/api/paas
+      chat:
+        options:
+          model: glm-4.6
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 3130567547@qq.com
+    password: 'xxndlzjcrxuqdedh'
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+mybatis:
+  type-aliases-package: com.kaer.jchatmind.model.entity
+  mapper-locations: classpath:mapper/*.xml
+  type-handlers-package: com.kaer.typehandler
+
+#document:
+#  storage:
+#    base-path: ./data/documents
+
+document:
+  storage:
+    base-path: ./jchatmind01/data/documents

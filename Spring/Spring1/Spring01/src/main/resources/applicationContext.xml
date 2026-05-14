@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+   配置bean
+   id:表示给bean取名字
+   class:表示给bean定义类型
+   -->
+    <bean id="dao" name="bookDao" class="com.itheima.dao.impl.BookDaoImpl" scope="prototype"/>
+    <bean id="service" class="com.itheima.service.impl.BookServiceImpl">
+        <property name="dao" ref = "dao"/>
+    </bean>
+
+
+</beans>

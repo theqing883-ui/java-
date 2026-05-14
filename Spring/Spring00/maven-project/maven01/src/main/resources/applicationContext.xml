@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--1.导入坐标 在pom.xml已经完成-->
+
+    <!--2.配置bean
+        id:表示给bean取名字
+        class:表示给bean定义类型-->
+    <bean id="dao1" class="com.itheima.Spring1.dao.impl.UserDaoImplForMySQL"/>
+
+    <bean id="service1" class="com.itheima.Spring1.service.impl.UserServiceImpl"/>
+</beans>

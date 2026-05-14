@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- 模型版本 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父工程：Spring Boot 依赖管理 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.12</version>  <!-- ⚠️ 建议确认此版本是否存在，可用 3.5.4 或 3.4.5 -->
+        <relativePath/> <!-- 从仓库查找父 POM -->
+    </parent>
+
+    <!-- 项目坐标 -->
+    <groupId>com.itheima</groupId>
+    <artifactId>springboot04_ssm</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>springboot04_ssm</name>
+    <description>springboot04_ssm</description>
+
+    <!-- 项目属性配置 -->
+    <properties>
+        <java.version>17</java.version>  <!-- Spring Boot 3.x 最低要求 JDK 17 -->
+    </properties>
+
+    <!-- 项目依赖 -->
+    <dependencies>
+
+        <!--
+        =============================================
+        🌐 Web 开发核心依赖
+        =============================================
+        包含：Spring MVC、Tomcat、Jackson、Validation 等
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!--
+        =============================================
+        🗄️ MyBatis 持久层框架
+        =============================================
+        版本：3.0.5（兼容 Spring Boot 3.5.x）
+        -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+
+        <!--
+        =============================================
+        🐬 MySQL 数据库驱动
+        =============================================
+        scope=runtime：编译时不需要，运行时才需要
+        -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!--
+        =============================================
+        💧 Druid 数据库连接池（阿里巴巴）
+        =============================================
+        ⚠️ 建议改为 druid-spring-boot-starter 以获得自动配置
+        当前版本：1.2.23（最新稳定版）
+        -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.23</version>
+        </dependency>
+
+        <!--
+        =============================================
+        🧪 测试依赖
+        =============================================
+        包含：JUnit 5、Mockito、Spring Test 等
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- 构建配置 -->
+    <build>
+        <plugins>
+            <!--
+            =============================================
+            🚀 Spring Boot Maven 插件
+            =============================================
+            功能：打包可执行 JAR、运行 Spring Boot 应用
+            -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

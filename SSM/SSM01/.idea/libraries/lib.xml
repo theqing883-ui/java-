@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/micrometer-observation-1.12.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-aop-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/jackson-core-2.15.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.15.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-j-8.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/druid-1.2.23.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-jdbc-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.25.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-expression-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/mybatis-3.5.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/jackson-databind-2.15.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/mybatis-spring-3.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-tx-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-jcl-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-web-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/micrometer-commons-1.12.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-webmvc-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-core-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-beans-6.1.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/SSM01-1.0-SNAPSHOT/WEB-INF/lib/spring-context-6.1.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

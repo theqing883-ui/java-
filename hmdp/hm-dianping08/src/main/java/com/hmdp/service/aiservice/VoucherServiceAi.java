@@ -1,0 +1,44 @@
+package com.hmdp.service.aiservice;
+
+import com.hmdp.entity.Shop;
+import com.hmdp.entity.Voucher;
+import com.hmdp.mapper.ShopMapper;
+import com.hmdp.mapper.VoucherMapper;
+import com.hmdp.mapper.VoucherOrderMapper;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class VoucherServiceAi {
+    @Autowired
+    private VoucherMapper voucherMapper;
+
+    @Autowired
+    private VoucherOrderMapper voucherOrderMapper;
+
+    @Autowired
+    private ShopMapper shopMapper;
+
+    //1.查询商家信息
+    public List<Voucher> findVoucherByShopName(String shopName) {
+        Shop shop = shopMapper.findShop(shopName);
+        return voucherMapper.findVoucherByShopId(shop.getId());
+    }
+
+    //2.查询用户拥有的优惠券
+    public List<Voucher> findVoucherByUserPhone(String userPhone) {
+        List<Long> voucherIds = voucherOrderMapper.findByPhone(userPhone);
+        String ids = StringUtils.join(voucherIds, ",");
+        // System.out.println("用户拥有的优惠券id是: " + ids);
+        List<Voucher> vouchers = new ArrayList<>();
+        for (Long voucherId : voucherIds) {
+            vouchers.add(voucherMapper.findByIds(voucherId));
+        }
+         System.out.println("查询用户拥有的优惠券: " + vouchers);
+        return vouchers;
+    }
+}

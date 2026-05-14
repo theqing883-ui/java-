@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--等号 = 左右两边其实是可以有空格的，但在实际开发习惯中，通常建议不写空格。-->
+<beans>
+    <bean id="userService" class="com.kama.service.UserService">
+        <property name="userRepository" ref="userRepository" />
+    </bean>
+    <bean id="userRepository" class="com.kama.repository.UserRepository"/>
+</beans>

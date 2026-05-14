@@ -1,0 +1,4 @@
+docker
+CONTAINER ID   IMAGE                    COMMAND                   CREATED                                 STATUS                                  PORTS                    NAMES
+e097fcf842dc   pgvector/pgvector:pg16   "docker-entrypoint.s…"   57 seconds ago   Up 56 seconds   0.0.0.0:5432->5432/tcp   my-pgvector
+b2c05f826bce   redislabs/redisearch     "docker-entrypoint.s…"   2 weeks ago      Up 4 minutes    0.0.0.0:6379->6379/tcp   redis-vector

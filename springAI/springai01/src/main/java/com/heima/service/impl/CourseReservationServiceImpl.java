@@ -1,0 +1,20 @@
+package com.heima.service.impl;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.heima.entity.POJO.CourseReservation;
+import com.heima.mapper.CourseReservationMapper;
+import com.heima.service.ICourseReservationService;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * 服务实现类
+ * </p>
+ *
+ * @author xxq
+ * @since 2026-04-23
+ */
+@Service
+public class CourseReservationServiceImpl extends ServiceImpl<CourseReservationMapper, CourseReservation> implements ICourseReservationService {
+
+}

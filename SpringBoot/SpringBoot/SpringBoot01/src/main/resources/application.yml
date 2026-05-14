@@ -1,0 +1,31 @@
+# 默认配置（如果不指定环境，这里生效）
+spring:
+  profiles:
+    active: dev  # 默认激活开发环境
+
+---
+# 开发环境 (dev)
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  port: 80
+
+---
+# 生产环境 (pro)
+spring:
+  config:
+    activate:
+      on-profile: pro
+server:
+  port: 81
+
+---
+# 测试环境 (test)
+spring:
+  config:
+    activate:
+      on-profile: test
+server:
+  port: 82

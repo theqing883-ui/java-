@@ -1,0 +1,73 @@
+package com.hspedu.exercise.homework10;
+
+public class Doctor {
+    private String name;
+    private int age;
+    private String gender;
+    private String job;
+    private double sal;
+
+    public Doctor(String name, int age, String job, String gender, double sal) {
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.gender = gender;
+        this.sal = sal;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public double getSal() {
+        return sal;
+    }
+
+    public void setSal(double sal) {
+        this.sal = sal;
+    }
+
+
+    public boolean equals(Object obj) {
+        //判断是否是指向同一个对象
+        if (this == obj) {
+            return true;
+        }
+        //过关斩将(排除不成立的情况)
+        if (!(obj instanceof Doctor)) {
+            return false;
+        }
+        Doctor doctor = (Doctor) obj;
+        return (doctor.getName().equals(this.getName()) && doctor.getAge() == this.getAge()
+                && doctor.getGender().equals(this.getGender())  && doctor.getJob().equals(this.getJob())
+                && doctor.getSal() == this.getSal()) ;
+    }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="userDao"
+          class="com.minispring.test.bean.UserDaoImpl"
+          scope="prototype"/>
+
+    <bean id="userService"
+          class="com.minispring.test.bean.UserService"
+          init-method="init"
+          scope="prototype">
+
+        <property name="name" value="张三"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+</beans>
+        <!--<?xml version="1.0" encoding="UTF-8"?>
+        <beans>
+            <bean id="userDao"
+                  class="com.minispring.test.bean.UserDaoImpl"
+                  lazy-init="true"/>
+
+            <bean id="userService"
+                  class="com.minispring.test.bean.UserService"
+                  init-method="init"
+                  lazy-init="true">
+
+                <property name="name" value="张三"/>
+                <property name="userDao" ref="userDao"/>
+            </bean>
+        </beans>-->
+
+

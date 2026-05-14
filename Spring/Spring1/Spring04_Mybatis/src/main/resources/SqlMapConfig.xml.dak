@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 加载外部属性文件 jdbc.properties，用于后续配置中引用变量（如 ${jdbc.driver}） -->
+    <properties resource="jdbc.properties"></properties>
+
+    <!-- 配置类型别名，为指定包下的所有类自动注册别名（默认别名为类名的首字母小写形式） -->
+    <typeAliases>
+        <!-- 扫描 com.itheima.domain 包，该包下的实体类如 Account 将自动拥有别名 account -->
+        <package name="com.itheima.domain"/>
+    </typeAliases>
+
+    <!-- 配置运行环境，可以定义多个 environment，并通过 default 指定默认使用的环境 -->
+    <environments default="mysql">
+        <!-- 定义一个名为 mysql 的环境 -->
+        <environment id="mysql">
+            <!-- 事务管理器：使用 JDBC 方式，即由 MyBatis 直接管理 JDBC 连接的事务（提交/回滚） -->
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- 数据源类型：使用连接池（POOLED），从池中获取连接以提高性能 -->
+            <dataSource type="POOLED">
+                <!-- 数据库驱动：从属性文件读取 ${jdbc.driver} -->
+                <property name="driver" value="${jdbc.driver}"></property>
+                <!-- 数据库连接 URL：从属性文件读取 ${jdbc.url} -->
+                <property name="url" value="${jdbc.url}"></property>
+                <!-- 数据库用户名：从属性文件读取 ${jdbc.username} -->
+                <property name="username" value="${jdbc.username}"></property>
+                <!-- 数据库密码：从属性文件读取 ${jdbc.password} -->
+                <property name="password" value="${jdbc.password}"></property>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 配置映射器（Mapper）的位置，指定 Dao 接口所在的包 -->
+    <mappers>
+        <!-- 扫描 com.itheima.dao 包，将该包下所有接口注册为映射器（无需编写 XML 映射文件，基于注解或接口方法） -->
+        <package name="com.itheima.dao"></package>
+    </mappers>
+</configuration>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ==================== 项目基本信息 ==================== -->
+    <groupId>com.Langchian4j</groupId>
+    <artifactId>hm-dianping-ai</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>hm-dianping-ai</name>
+    <description>黑马点评 AI 助手集成项目</description>
+
+    <!-- ==================== Spring Boot 父依赖 ==================== -->
+    <!--
+        版本：3.2.5
+        - 要求 Java 17 或更高版本（当前配置 Java 17，完全兼容）
+        - 自动管理大量 Spring 生态组件的版本，无需显式指定版本号
+        - 内置 Tomcat 10.x（Jakarta EE 命名空间）、Spring Framework 6.1.x
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/> <!-- 从 Maven 仓库查找父 POM，优先使用本地缓存 -->
+    </parent>
+
+    <!-- ==================== 全局属性定义 ==================== -->
+    <properties>
+        <java.version>17</java.version>                        <!-- 与 Spring Boot 3.2.5 官方要求的 Java 17 一致 -->
+        <langchain4j.version>1.0.1-beta6</langchain4j.version> <!-- LangChain4j 统一版本 -->
+        <mybatis-plus.version>3.5.7</mybatis-plus.version>     <!-- 专为 Spring Boot 3.x 优化的 MyBatis Plus 版本 -->
+        <redisson.version>3.18.0</redisson.version>            <!-- Redisson 分布式锁/缓存客户端版本 -->
+    </properties>
+
+    <dependencies>
+        <!-- ==================== Spring Boot 基础 Starter ==================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 提供 RESTful API、Tomcat 嵌入式容器、Jackson 序列化等 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <!-- 开启 AOP 支持，可用于日志、权限、事务等切面编程 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <!-- 提供生产级监控端点：/health、/info、/metrics 等 -->
+        </dependency>
+
+        <!-- ==================== 数据库与持久层 ==================== -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+            <!-- MySQL 8.0+ 驱动，与 Spring Boot 3.x 兼容（新坐标 mysql-connector-j） -->
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
+            <!-- MyBatis Plus 针对 Spring Boot 3.x 的专用 Starter，自动配置 SQL 会话工厂、Mapper 扫描等 -->
+        </dependency>
+
+        <!-- ==================== Redis 相关 ==================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <!-- 默认使用 Lettuce 客户端，支持响应式编程 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <!-- 连接池支持，配合 Lettuce 或 Jedis 使用 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>${redisson.version}</version>
+            <!-- 高级 Redis 客户端：分布式锁、布隆过滤器、分布式集合等 -->
+        </dependency>
+
+        <!-- ==================== LangChain4j 智能体框架 ==================== -->
+        <!-- 注意：所有 LangChain4j 组件使用相同的 beta6 版本，避免版本冲突 -->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
+            <version>${langchain4j.version}</version>
+            <!-- 集成 OpenAI 模型（ChatGPT、Embedding 等），提供自动配置 -->
+        </dependency>
+
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-spring-boot-starter</artifactId>
+            <version>${langchain4j.version}</version>
+            <!-- LangChain4j 核心 Starter：提供 AiServices、聊天记忆、工具调用等 -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+            <!-- 非阻塞 Web 客户端，用于 LangChain4j 的流式调用（Server-Sent Events） -->
+        </dependency>
+
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-reactor</artifactId>
+            <version>${langchain4j.version}</version>
+            <!-- 将 LangChain4j 的流式返回适配为 Reactor Flux，便于响应式编程 -->
+        </dependency>
+
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-easy-rag</artifactId>
+            <version>${langchain4j.version}</version>
+            <!-- 简化 RAG（检索增强生成）实现，包含文档加载、分割、嵌入、向量存储等 -->
+        </dependency>
+
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
+            <version>${langchain4j.version}</version>
+            <!-- PDF 文档解析器，基于 Apache PDFBox，用于 RAG 流程中的文档解析 -->
+        </dependency>
+        <!--引入langchain4j对于redis向量数据库的支持-->
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-community-redis-spring-boot-starter</artifactId>
+            <version>1.0.1-beta6</version>
+        </dependency>
+
+        <!-- ==================== 工具类库 ==================== -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <!-- 编译期生成 getter/setter/构造器等，减少样板代码 -->
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.25</version>
+            <!-- 国产强大工具库：字符串、集合、加密、HTTP 客户端等 -->
+        </dependency>
+
+        <!-- ==================== 测试依赖 ==================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <!-- 包含 JUnit 5、Mockito、AssertJ、Spring Test 等 -->
+        </dependency>
+    </dependencies>
+
+    <!-- ==================== 构建配置 ==================== -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                    <!-- 排除 Lombok，避免将其打包进最终 JAR（它仅在编译时需要） -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

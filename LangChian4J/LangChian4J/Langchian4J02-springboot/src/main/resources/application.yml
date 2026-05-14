@@ -1,0 +1,54 @@
+langchain4j:
+  open-ai:
+    chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${API-KEY-bailian}
+      model-name: qwen3.6-plus
+      log-requests: true
+      log-responses: true
+    streaming-chat-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${API-KEY-bailian}
+      model-name: qwen3.6-plus
+      log-requests: true
+      log-responses: true
+    embedding-model:
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api-key: ${API-KEY-bailian}
+      model-name: text-embedding-v3
+      log-requests: true
+      log-responses: true
+      max-segments-per-batch: 10 # 平台限制，每次给模型传输最多10个片段
+  community:
+    redis:
+      host: localhost
+      port: 6379
+
+
+logging:
+  level:
+    dev.langchain4j: debug
+
+
+spring:
+  data:
+    redis:
+      host: localhost
+      #      password: 123456
+      port: 6379
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+          min-idle: 1
+          time-between-eviction-runs: 10s
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/volunteer?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #下划线明白转驼峰命名
